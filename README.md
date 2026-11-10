@@ -1,30 +1,29 @@
+![NeoRixium](logos/Images/NeoLogo/NeoLogoLong.png)
 
-![NeoRixOS](logos/Images/NeoLogo/NeoLogoLong.png)
-
-**NeoRixOS** is a lightweight, bloat-free Linux distro based on Arch, made for everyday use.
+**NeoRixium** is a lightweight, bloat-free Linux distro based on Arch, made for everyday use. The operating system's original name is **RixiumOS**. It is developed by **The NeoRixium Project**, often shortened to **Neo**.
 
 ## Built on Arch Linux™
 
-NeoRixOS runs on Arch Linux™ under the hood. Rolling release means your system is always current — no big version jumps, no reinstalls.
+NeoRixium runs on Arch Linux™ under the hood. Rolling release means your system stays up to date — no big version jumps and no reinstalls.
 
 ## What is nrx?
 
-Arch Linux gives you pacman — powerful, but strictly single-purpose. If you ever need a package that only exists as a `.deb` or `.rpm`, or you just don't want to remember five different package managers' syntax, you're on your own.
+Arch Linux gives you pacman — a powerful tool, but one that works with Arch packages. If you need a package that is only available as a `.deb` or `.rpm`, or you do not want to learn several package managers, it can be difficult to know which tool to use.
 
-**nrx** is NeoRixOS's answer to that: a single, unified command-line layer that sits on top of pacman (and, optionally, other package systems) so you interact with *one* interface no matter where a package comes from.
+**nrx** is NeoRixium's answer: one command-line tool that works with pacman and, optionally, other package systems. It gives you one interface, no matter which package system a package comes from.
 
 ### How it works
 
-nrx doesn't replace pacman — it directs traffic to it.
+nrx does not replace pacman — it sends your command to it.
 
 ```
 You type:  sudo nrx install firefox
 nrx does:  pacman -S firefox
 ```
 
-Under the hood, nrx is built around **backends** — small drivers, one per package system, each implementing the same basic operations (`install`, `remove`, `search`, `update`, `upgrade`, `info`). pacman is the native, always-present backend. Others (like Debian/Ubuntu `.deb` support) are optional and can be added or removed depending on what you need.
+Under the hood, nrx uses **backends** — small drivers, one for each package system. Each backend supports the same basic actions: `install`, `remove`, `search`, `update`, `upgrade`, and `info`. Pacman is always included as the native backend. Other backends, such as Debian/Ubuntu `.deb` support, are optional.
 
-If you don't specify a backend, nrx defaults to pacman:
+If you do not choose a backend, nrx uses pacman by default:
 
 ```
 sudo nrx install firefox
@@ -32,7 +31,7 @@ sudo nrx install firefox
 sudo nrx --pacman install firefox
 ```
 
-If you want to be explicit, or use a non-native backend:
+You can also choose a backend yourself, including one that is not native to Arch:
 
 ```
 sudo nrx --pacman install firefox
@@ -41,22 +40,22 @@ sudo nrx --apt install some-package
 
 ### Foreign packages
 
-nrx can also inspect and install packages from other ecosystems (like `.deb` files) without letting them interfere with your native Arch system. Before anything is installed, nrx shows you exactly what the package contains — its files, dependencies, and any install scripts — so you always know what you're agreeing to.
+nrx can inspect and install packages from other systems, such as `.deb` files, without letting them interfere with your native Arch system. Before installing, nrx shows what the package contains — its files, dependencies, and any install scripts — so you know what you are agreeing to.
 
 ### System updates, too
 
-nrx isn't just a package manager wrapper — it's also how NeoRixOS itself gets updated. It checks for new NeoRixOS releases, shows you what changed, and never installs anything without your explicit approval. Checking for an update, downloading it, and installing it are always three separate, user-controlled steps.
+nrx is not just a package manager wrapper — it is also how NeoRixium gets updated. It checks for new NeoRixium releases and shows what has changed. Checking for an update, downloading it, and installing it are separate steps. Nothing is installed without your approval.
 
 ### Why it exists
 
-The goal isn't to hide Linux's complexity from you — it's to stop making you learn five different tools to do the same basic things. You can still use pacman directly at any time; nrx is a convenience it recommends, never a requirement it enforces.
+The goal is not to hide Linux's complexity. It is to save you from learning several tools to do the same basic tasks. You can still use pacman directly at any time; nrx is a convenient option, not something you have to use.
 
 ---
 
-**NeoRixOS** currently offers two desktop environment editions:
+**NeoRixium** currently offers two desktop environment editions:
 
-- ![Neodymium](logos/Images/NeoLogo/Neodymium.png) **Neodymium (XFCE)** – Fast and light, essential apps only, and Firefox. Works well on older hardware too.
-- ![Neosilicium](logos/Images/NeoLogo/Neosilicium.png) **Neosilicium (KDE Plasma)** – Fully customizable desktop with KDE's own app suite. Not bloat-free by nature, but trimmed down as much as possible.
+- ![Neodymium](logos/Images/NeoLogo/Neodymium.png) **Neodymium (XFCE)** – Fast and light, with essential apps and Firefox. It also works well on older hardware.
+- ![Neosilicium](logos/Images/NeoLogo/Neosilicium.png) **Neosilicium (KDE Plasma)** – A customizable desktop with KDE's own app suite. It is not bloat-free by nature, but it has been trimmed down as much as possible.
 
 Both editions run on the same Arch-based core. Different desktop, same system.
 
@@ -64,69 +63,66 @@ Both editions run on the same Arch-based core. Different desktop, same system.
 
 ---
 
-# NeoRixOS Terms and Conditions
+# NeoRixium Terms and Conditions
 
-Welcome to NeoRixOS! By using, downloading, or distributing NeoRixOS, you agree to the following terms:
+Welcome to NeoRixium! By using, downloading, or sharing NeoRixium, you agree to these terms:
 
 ## 1. License
 
-NeoRixOS is licensed under the **GNU General Public License v3 (GPLv3)**.
-You are free to use, modify, and redistribute the software under the terms of this license.
+NeoRixium is licensed under the **GNU General Public License v3 (GPLv3)**. You may use, change, and share the software under the terms of this license.
 
 ## 2. Usage
 
-- NeoRixOS is provided **as-is**. The developers are not responsible for any damage, data loss, or issues caused by using the software.
-- You may create derivative works or build your own distributions based on NeoRixOS.
+- NeoRixium is provided **as is**. The developers are not responsible for damage, data loss, or other problems caused by using the software.
+- You may make changes to NeoRixium or build your own distribution based on it.
 
 ## 3. Logos and Images
 
-- All NeoRixOS logos and images may be used for **personal purposes**, such as wallpapers or decorations.
-- You may not use any NeoRixOS logos, images, or branding for **commercial purposes** without explicit permission.
-- You may modify logos for personal projects in a non-commercial context.
+- You may use NeoRixium logos and images for **personal use**, such as wallpapers or decoration.
+- You may not use NeoRixium logos, images, or branding for **commercial purposes** without permission.
+- You may change the logos for personal, non-commercial projects.
 
 ## 4. No Warranty
 
-NeoRixOS comes without any warranties. The developer make no guarantees about functionality, stability, or compatibility.
-Use at your own risk.
+NeoRixium comes without any warranty. The developer makes no promises about how well it works, its stability, or whether it will work with your hardware. Use it at your own risk.
 
 ## 5. Intellectual Property
 
-- The NeoRixOS name and logos are owned by the creator (NeoRixOS).
-- Referencing NeoRixOS in non-commercial projects is allowed.
+- The NeoRixium name and logos belong to **The NeoRixium Project**.
+- You may mention NeoRixium in non-commercial projects.
 
 ## 6. Updates and Support
 
-- NeoRixOS may provide updates and new ISO releases.
-- Support is community-driven; no official technical support is guaranteed.
+- NeoRixium may provide updates and new ISO releases.
+- Support comes from the community. Official technical support is not guaranteed.
 
-## 7. Changes to Terms
+## 7. Changes to These Terms
 
-NeoRixOS may update these Terms and Conditions. By continuing to use the software, you accept any changes.
+The NeoRixium Project may update these terms. If you continue to use NeoRixium, you accept the changes.
 
 ---
 
-# NeoRixOS Privacy Policy
+# NeoRixium Privacy Policy
 
-Your privacy is important to the developer of NeoRixOS. This policy explains what information is collected and how it is used.
+Your privacy is important to The NeoRixium Project. This policy explains what information is collected and how it is used.
 
 ## 1. Information Collection
 
-- NeoRixOS **does not collect any personal data**.
-- Downloading ISOs or accessing the website does **not require registration or personal information**.
+- NeoRixium **does not collect personal data**.
+- You do not need to register or provide personal information to download ISOs or visit the website.
 
 ## 2. Third-Party Services
 
-- NeoRixOS may link to external services (e.g., GitHub, Netlify) for downloads or contributions.
-- The privacy policies of these services apply when you use them.
+- NeoRixium may link to other services, such as GitHub or Netlify, for downloads or contributions.
+- Those services' privacy policies apply when you use them.
 
 ## 3. Your Rights
 
-- Since no personal data is collected, there is nothing stored that you need to request deletion for.
+Since no personal data is collected, there is no stored personal data for you to ask us to delete.
 
-## 4. Changes to this Policy
+## 4. Changes to This Policy
 
-- This Privacy Policy may be updated over time.
-- Continued use of NeoRixOS or the website implies acceptance of any updates.
+This Privacy Policy may change over time. If you continue to use NeoRixium or the website, you accept any updates.
 
 ---
 
@@ -134,27 +130,27 @@ Your privacy is important to the developer of NeoRixOS. This policy explains wha
 
 Last updated: 2026
 
-## NeoRix Name & Logo
+## NeoRixium Name and Logo
 
-- The NeoRix name and its logos are owned by the NeoRix project. You may reference the NeoRix name in non-commercial contexts freely. You may not use the NeoRix name or logo to imply official endorsement or affiliation without permission.
+- The NeoRixium name and logos belong to **The NeoRixium Project**. You may freely mention the NeoRixium name in non-commercial contexts. You may not use the name or logo to suggest official approval or support without permission.
 
 ## Arch Linux™
 
-- NeoRix is based on Arch Linux™. The Arch Linux name and logo are trademarks of Judd Vinet and Aaron Griffin. NeoRix is an independent project and is not affiliated with, endorsed by, or sponsored by the Arch Linux project.
-- Use of the Arch Linux™ name on this website is solely to indicate that NeoRix is derived from Arch Linux, as permitted under Arch Linux's trademark policy.
+- NeoRixium is based on Arch Linux™. The Arch Linux name and logo are trademarks of Judd Vinet and Aaron Griffin. NeoRixium is an independent project. It is not affiliated with, approved by, or sponsored by the Arch Linux project.
+- The Arch Linux™ name is used here only to show that NeoRixium is based on Arch Linux, as allowed by Arch Linux's trademark policy.
 
 ## Firefox
 
-- Firefox is a trademark of the Mozilla Foundation. NeoRix includes Firefox as a default browser in its editions. This does not imply any affiliation with or endorsement by Mozilla.
+Firefox is a trademark of the Mozilla Foundation. NeoRixium includes Firefox as the default browser in its editions. This does not mean Mozilla is connected with or supports NeoRixium.
 
 ## KDE Plasma
 
-- KDE and the KDE logo are registered trademarks of KDE e.V. The NeoRix Neosilicium edition is built on KDE Plasma. This does not imply any affiliation with or endorsement by KDE e.V.
+KDE and the KDE logo are registered trademarks of KDE e.V. The NeoRixium Neosilicium edition is built on KDE Plasma. This does not mean KDE e.V. is connected with or supports NeoRixium.
 
 ## XFCE
 
-- XFCE is the trademark of its respective project. NeoRix uses this desktop environment in its Neodymium edition without implying any official relationship with its organization.
+XFCE is a trademark of its project. NeoRixium uses XFCE in its Neodymium edition, but this does not mean there is an official connection with the XFCE project.
 
 ## Other Trademarks
 
-- All other trademarks, product names, and company names mentioned on this site are the property of their respective owners
+All other trademarks, product names, and company names mentioned here belong to their respective owners.
