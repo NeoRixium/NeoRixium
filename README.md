@@ -8,47 +8,49 @@ NeoRixium runs on Arch Linux™ under the hood. Rolling release means your syste
 
 ## What is nrx?
 
-Arch Linux gives you pacman — a powerful tool, but one that works with Arch packages. If you need a package that is only available as a `.deb` or `.rpm`, or you do not want to learn several package managers, it can be difficult to know which tool to use.
+Arch Linux gives you pacman — a powerful tool for Arch packages. **nrx** is NeoRixium's own package manager front-end: a small command-line tool that sits on top of pacman and gives you a short, predictable set of commands.
 
-**nrx** is NeoRixium's answer: one command-line tool that works with pacman and, optionally, other package systems. It gives you one interface, no matter which package system a package comes from.
-
-### How it works
-
-nrx does not replace pacman — it sends your command to it.
+nrx does not replace pacman, and it does not skip any of pacman's safety checks. It passes your request to pacman and returns pacman's result.
 
 ```
-You type:  sudo nrx install firefox
-nrx does:  pacman -S firefox
+You type:  nrx install firefox
+nrx runs:  sudo pacman -S --needed -- firefox
 ```
 
-Under the hood, nrx uses **backends** — small drivers, one for each package system. Each backend supports the same basic actions: `install`, `remove`, `search`, `update`, `upgrade`, and `info`. Pacman is always included as the native backend. Other backends, such as Debian/Ubuntu `.deb` support, are optional.
+You can still use pacman directly at any time. nrx is a convenient option, not something you have to use.
 
-If you do not choose a backend, nrx uses pacman by default:
-
-```
-sudo nrx install firefox
-     ↓ same as ↓
-sudo nrx --pacman install firefox
-```
-
-You can also choose a backend yourself, including one that is not native to Arch:
+### Available now (nrx v1, version 0.1.0)
 
 ```
-sudo nrx --pacman install firefox
-sudo nrx --apt install some-package
+nrx update               Upgrade the whole system
+nrx upgrade              Same as update
+nrx install <package>    Install a package
+nrx remove <package>     Remove a package
+nrx search <query>       Search for packages
+nrx info <package>       Show package information
+nrx help                 Show the command list
+nrx version              Show the nrx version
 ```
 
-### Foreign packages
+- **Pacman does the work.** In v1, nrx works with pacman only. Package signature checks, dependency resolution, and pacman's confirmation prompts all stay on. nrx never adds options such as `--noconfirm` for you.
+- **Administrator rights only when needed.** Run nrx as a normal user. It asks for administrator rights (through `sudo`) only for commands that change the system. `search`, `info`, `help`, and `version` never need them.
+- **`update` and `upgrade` are the same.** Both run `pacman -Syu`: they refresh the package databases and upgrade the whole system in one step. Arch Linux does not support partial upgrades, so nrx never refreshes the databases without also upgrading.
+- **`install` does not reinstall.** Packages that are already up to date are skipped.
+- **`remove` is careful.** It removes only the packages you name. Pacman refuses if other packages still depend on them. nrx does not remove leftover dependencies automatically, and pacman keeps backup copies of configuration files you have changed.
+- **Predictable input.** nrx v1 accepts plain package names only. Options and flags (for example `--noconfirm` or `--overwrite`) are rejected instead of being passed on to pacman. Version constraints such as `package>=1.0` are not supported yet.
+- **Script-friendly.** nrx returns pacman's exit code. Wrong or missing arguments return exit code 2.
 
-nrx can inspect and install packages from other systems, such as `.deb` files, without letting them interfere with your native Arch system. Before installing, nrx shows what the package contains — its files, dependencies, and any install scripts — so you know what you are agreeing to.
+### Planned
 
-### System updates, too
+The following ideas are development goals. They are **not** available yet.
 
-nrx is not just a package manager wrapper — it is also how NeoRixium gets updated. It checks for new NeoRixium releases and shows what has changed. Checking for an update, downloading it, and installing it are separate steps. Nothing is installed without your approval.
+- **More package systems.** Optional backends for other package formats, such as Debian/Ubuntu `.deb` packages, chosen with an option like `--apt`. Pacman will always remain the native backend.
+- **Inspecting foreign packages.** Before installing a package from another system, nrx would show what it contains — its files, dependencies, and install scripts — and keep it separate from your native Arch system.
+- **System updates through nrx.** Checking for new NeoRixium releases and showing what has changed. Checking, downloading, and installing would be separate steps, and nothing would be installed without your approval.
 
 ### Why it exists
 
-The goal is not to hide Linux's complexity. It is to save you from learning several tools to do the same basic tasks. You can still use pacman directly at any time; nrx is a convenient option, not something you have to use.
+The goal is not to hide Linux's complexity. It is to give everyday package tasks one simple, safe set of commands — today for pacman, and in the future for more package systems.
 
 ---
 
@@ -69,7 +71,9 @@ Welcome to NeoRixium! By using, downloading, or sharing NeoRixium, you agree to 
 
 ## 1. License
 
-NeoRixium is licensed under the **GNU General Public License v3 (GPLv3)**. You may use, change, and share the software under the terms of this license.
+The NeoRixium **software** is licensed under the **GNU General Public License v3 (GPLv3)**. You may use, change, and share the software under the terms of this license.
+
+The NeoRixium **name, logos, and images are not part of that license**. They are covered by Section 3 below and by the Trademark Policy.
 
 ## 2. Usage
 
@@ -78,6 +82,7 @@ NeoRixium is licensed under the **GNU General Public License v3 (GPLv3)**. You m
 
 ## 3. Logos and Images
 
+- NeoRixium logos and images are **not** licensed under the GPLv3. The rules in this section apply to them instead.
 - You may use NeoRixium logos and images for **personal use**, such as wallpapers or decoration.
 - You may not use NeoRixium logos, images, or branding for **commercial purposes** without permission.
 - You may change the logos for personal, non-commercial projects.
@@ -108,21 +113,21 @@ Your privacy is important to The NeoRixium Project. This policy explains what in
 
 ## 1. Information Collection
 
-- NeoRixium **does not collect personal data**.
-- You do not need to register or provide personal information to download ISOs or visit the website.
+- The NeoRixium Project **does not directly collect personal data** through the NeoRixium operating system or its ISO downloads.
+- You do not need to register or provide personal information to use NeoRixium or download ISOs.
 
-## 2. Third-Party Services
+## 2. Third-Party Services and Software
 
-- NeoRixium may link to other services, such as GitHub or Netlify, for downloads or contributions.
-- Those services' privacy policies apply when you use them.
+- NeoRixium may link to other services, such as GitHub, for downloads or contributions. These services may process data when you use them, and their privacy policies apply.
+- NeoRixium includes software made by others, such as Firefox and the Arch Linux package servers it downloads from. Those services have their own privacy policies, which The NeoRixium Project does not control.
 
 ## 3. Your Rights
 
-Since no personal data is collected, there is no stored personal data for you to ask us to delete.
+The NeoRixium Project does not directly collect personal data through the operating system or ISO downloads. Third-party services may process data under their own privacy policies. Please contact those services about data they process.
 
 ## 4. Changes to This Policy
 
-This Privacy Policy may change over time. If you continue to use NeoRixium or the website, you accept any updates.
+This Privacy Policy may change over time. If you continue to use NeoRixium, you accept any updates.
 
 ---
 
@@ -136,8 +141,8 @@ Last updated: 2026
 
 ## Arch Linux™
 
-- NeoRixium is based on Arch Linux™. The Arch Linux name and logo are trademarks of Judd Vinet and Aaron Griffin. NeoRixium is an independent project. It is not affiliated with, approved by, or sponsored by the Arch Linux project.
-- The Arch Linux™ name is used here only to show that NeoRixium is based on Arch Linux, as allowed by Arch Linux's trademark policy.
+- NeoRixium is based on Arch Linux™. The Arch Linux name and logo are trademarks owned by Levente Polyák and Judd Vinet, on behalf of Arch Linux. NeoRixium is an independent project. It is not affiliated with, approved by, or sponsored by the Arch Linux project.
+- The Arch Linux™ name is used here only to say that NeoRixium is based on Arch Linux, as described in the [Arch Linux Trademark Policy](https://terms.archlinux.org/docs/trademark-policy/). NeoRixium is not Arch Linux and is not called Arch Linux.
 
 ## Firefox
 
